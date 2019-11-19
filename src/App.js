@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import StreamList from './components/streams/StreamList';
+import StreamCreate from './components/streams/StreamCreate';
+
+class App extends Component {
+
+  render() {
+    return(
+      <div className="container">
+        <Switch>
+          <Route exact path="/" component={StreamList} />
+          <Route path="/streams/new" component={StreamCreate} />
+          <Route path="/streams/edit/:id" component={StreamDetail} />
+        </Switch>
+      </div>
+    );
+  }
+};
 
 export default App;
