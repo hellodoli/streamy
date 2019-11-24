@@ -9,6 +9,7 @@ import {
   NavLink,
   Collapse
 } from 'reactstrap';
+import OAuth from '../OAuth';
 
 class Header extends Component {
 	constructor () {
@@ -38,7 +39,7 @@ class Header extends Component {
 									<NavLink href="#">Streams</NavLink>
 								</NavItem>
 								<NavItem>
-									{/*<OAuth />*/}
+									<OAuth />
 								</NavItem>
 							</Nav>
 						</Collapse>
