@@ -25,20 +25,26 @@ class OAuth extends Component {
 
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
-      this.props.signIn();
+      this.props.signIn(this.auth.currentUser.get().getId());
     } else {
       this.props.signOut();
     }
   }
 
+  // change value of this.auth.isSignedIn.get() => true or false
   signInAndSignOut = () => {
     const { isSignedIn } = this.props;
     if (isSignedIn) {
-      // Sign Out
-      this.auth.signOut();
+      this.auth.signOut();// Sign Out
     } else {
       // Sign In
-      this.auth.signIn();
+      this.auth.signIn()
+        .then(() => {
+          console.log('Sign In success');
+        })
+        .catch((error) => {
+          console.log('Sign In Error: ', error);
+        });
     }
   }
   
@@ -56,7 +62,8 @@ class OAuth extends Component {
 }
 
 const mapStateToProps = state => ({
-  isSignedIn: state.oauthReducer.isSignedIn
+  isSignedIn: state.oauthReducer.isSignedIn,
+  userId: state.oauthReducer.userId
 });
 
 export default connect( mapStateToProps, 

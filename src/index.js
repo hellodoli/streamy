@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 import { Router } from 'react-router-dom';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 
@@ -13,8 +14,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from './App';
 
-const store = createStore(rootReducer);
-console.log(store.getState());
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(reduxThunk))
+);
+console.log('store: ', store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
