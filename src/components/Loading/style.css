@@ -1,0 +1,13 @@
+.s-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.s-loading.is-left {
+  justify-content: flex-start;
+}
+
+.s-loading.is-right {
+  justify-content: flex-end;
+}
