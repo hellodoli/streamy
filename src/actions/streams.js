@@ -41,6 +41,8 @@ export const editStream = (streamId, formValues) => async dispatch => {
     type: EDIT_STREAM,
     payload: response.data
   });
+  // push back to root
+  history.push('/');
 }
 
 export const deleteStream = (streamId) => async dispatch => {
