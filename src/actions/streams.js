@@ -51,4 +51,6 @@ export const deleteStream = (streamId) => async dispatch => {
     type: DELETE_STREAM,
     payload: streamId
   });
+  // push back to root
+  history.push('/');
 }

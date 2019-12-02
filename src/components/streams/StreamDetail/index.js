@@ -17,7 +17,6 @@ class StreamDetail extends Component {
 
   render () {
     const { stream } = this.props;
-    console.log('stream: ', stream);
     return(
       <div className="s-stream-edit">
         { (stream && stream.id) &&

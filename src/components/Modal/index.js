@@ -8,10 +8,9 @@ import {
   ModalFooter
 } from 'reactstrap';
 
-
-const ModalMain = ({ isOpen, toggleModal, title, content, actions }) => {
+const ModalMain = ({ isOpen, toggleModal, title, content, actions, closedModal }) => {
   return(
-    <Modal isOpen={isOpen} toggle={toggleModal}>
+    <Modal isOpen={isOpen} toggle={toggleModal} onClosed={closedModal}>
       <ModalHeader toggle={toggleModal}>{ title }</ModalHeader>
       <ModalBody>{ content }</ModalBody>
       <ModalFooter>
@@ -37,7 +36,7 @@ class SModal extends Component {
 
   render() {
     const { isOpen } = this.state;
-    const { title, content, actions } = this.props;
+    const { title, content, actions, closedModal } = this.props;
     return ReactDOM.createPortal(
       <ModalMain
         isOpen={isOpen}
@@ -46,6 +45,7 @@ class SModal extends Component {
         title={title}
         content={content}
         actions={actions}
+        closedModal={closedModal}
       />,
       document.getElementById('modal')
     );

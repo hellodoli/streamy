@@ -9,12 +9,7 @@ import {
 
 import { Link } from 'react-router-dom';
 
-import Loading from '../../Loading';
-
 function renderButtonMeta (currentUserId, stream) {
-  if (currentUserId === null) {
-    return <Loading />;
-  }
   if (currentUserId === stream.userId) {
     return <ButtonMetaGroup id={stream.id} />;
   }
