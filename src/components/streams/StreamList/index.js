@@ -21,7 +21,7 @@ class StreamList extends Component {
             <p className="lead">
               This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.
             </p>
-            <ContentLoading type={3} mode="dark" height={150}></ContentLoading>
+            <ContentLoading type={3} mode="dark"></ContentLoading>
           </div>
           <hr className="my-3"></hr>
           <div className="s-stream-list">
