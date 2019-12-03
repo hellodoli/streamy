@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Jumbotron } from 'reactstrap';
 import { fetchStreams } from '../../../actions/streams';
 import StreamItem from './StreamItem';
+import ContentLoading from '../../Loading/ContentLoading';
 
 class StreamList extends Component {
 
@@ -14,11 +15,14 @@ class StreamList extends Component {
     const { streamList, currentUserId } = this.props;
     return(
       <div>
-        <Jumbotron>
-          <h1 className="display-3">Hello, Streamer!</h1>
-          <p className="lead">
-            This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.
-          </p>
+        <Jumbotron className="bg-white">
+          <div>
+            <h1 className="display-3">Hello, Streamer!</h1>
+            <p className="lead">
+              This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.
+            </p>
+            <ContentLoading type={3} mode="dark" height={150}></ContentLoading>
+          </div>
           <hr className="my-3"></hr>
           <div className="s-stream-list">
             { (streamList && streamList.length > 0) &&
