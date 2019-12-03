@@ -4,7 +4,7 @@ export const mapKeys = (arr, key) => {
     const newArr = {};
     // check key exist
     for (const k in arr[0]) {
-      if (k == key) {
+      if (k === key) {
         isKeyExist = true;
         break;
       }

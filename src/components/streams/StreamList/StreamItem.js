@@ -30,7 +30,9 @@ export default ({ item , currentUserId }) => {
     <div className="s-stream-item" style={{ marginBottom: '15px' }}>
       <Card className="bg-dark text-white">
         <CardBody>
-          <CardTitle>{ item.title }</CardTitle>
+          <CardTitle>
+            <Link to={`/streams/${item.id}`}>{ item.title }</Link>
+          </CardTitle>
           <CardText>{ item.description }</CardText>
           { renderButtonMeta(currentUserId, item) }
         </CardBody>

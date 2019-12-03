@@ -17,6 +17,7 @@ import StreamList from "./components/streams/StreamList";
 import StreamCreate from "./components/streams/StreamCreate";
 import StreamDetail from './components/streams/StreamDetail';
 import StreamDelete from './components/streams/StreamDelete';
+import StreamShow from './components/streams/StreamShow';
 
 class App extends Component {
 
@@ -44,6 +45,7 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/" component={StreamList} />
                       <Route path="/streams/new" component={StreamCreate} />
+                      <Route path="/streams/:id" component={StreamShow} />
                       <Route path="/streams/edit/:id" component={StreamDetail} />
                       <Route path="/streams/delete/:id" component={StreamDelete} />
                     </Switch>
