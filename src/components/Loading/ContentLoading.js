@@ -14,8 +14,8 @@ function renderContentLoaderType (
     width = 400,
     height = 200,
 
-    row = 1,
-    col = 5,
+    row = 4,
+    col = 1,
 
     children,
     ...props
@@ -51,55 +51,58 @@ function renderContentLoaderType (
         </ContentLoader>
       );
     case 3: // News Loader
-      {
-        // default
-        const b = 3; // border radius
-        const gap = 20;
-        const totalTextRow = 4;
-
-        const itemWidth = 60;
-        const singleHeight = itemWidth + (2*gap);
-        height = singleHeight * row;
-        width = 400;
-        const fullGapEachRow = gap * (col - 1);
-        const singleWidth = (width - fullGapEachRow) / col;
-        
-        // square
-        //const h = (singleHeight * 60) / 100;
-        //const y = (singleHeight - h) / 2;
-        // row text
-        //const x1 = x + h + gap;
-        //const w1 = width - gap - h;
-        //const w2 = w1 / 2;
-        //const h1 = 20;
-
-        const list = [];
-        for (let i = 0; i < row; i++ ) {
-          for (let j = 0; j < col; j++) {
-            const x = (singleWidth + gap) * j;
-
-            list.push(
-              <React.Fragment>
-                <rect x={x} y={20} rx={b} ry={b} width={itemWidth} height={itemWidth} />
-              </React.Fragment>
-            );
-          }
-        }
-
-        console.log('list: ', list);
-
-        return (
-          <ContentLoader
-            width={width}
-            height={height}
-            primaryColor={primaryColor}
-            secondaryColor={secondaryColor}
-            {...props}
-          >
-            { list }
-          </ContentLoader>
-        );
+    {
+      // default
+      const b = 3; // border radius
+      const gap = 20;
+      const arrTextRow = [];
+      const totalTextRow = 4;
+      for (let i = 0; i < totalTextRow; i+=1) {
+        arrTextRow.push(i+1);
       }
+        
+      width = 400;
+      const fullGapEachRow = gap * (col - 1);
+      const singleWidth = (width - fullGapEachRow) / col;
+      const itemWidth = (singleWidth*20) / 100; // itemWidth = 20% singleWidth
+      const singleHeight = itemWidth + (2*gap);
+      height = singleHeight * row;
+
+      const itemTextRowWidth = singleWidth - itemWidth - gap;
+      const itemTextRowHeight = (0.9*(itemWidth/totalTextRow));
+      const itemTextRowGap = 0.1/(totalTextRow - 1)*itemWidth;
+      
+      const list = [];
+      for (let i = 0; i < row; i+=1) {
+        const y = (singleHeight * i) + gap;
+        for (let j = 0; j < col; j+=1) {
+          const x = (singleWidth + gap) * j;
+          const x1 = x + itemWidth + gap;
+          list.push(
+            <React.Fragment key={`${i}${j}`}>
+              <rect x={x} y={y} rx={b} ry={b} width={itemWidth} height={itemWidth} />
+              { arrTextRow.map((item,index) => {
+                const w1 = (index % 2 === 0) ? itemTextRowWidth : (itemTextRowWidth / 2);
+                const y1 = y + ((itemTextRowHeight + itemTextRowGap) * index);
+                return ( <rect key={`${i}${j}${index}`} x={x1} y={y1} rx={b} ry={b} width={w1} height={itemTextRowHeight} /> );
+              })}
+            </React.Fragment>
+          );
+        }
+      }
+
+      return (
+        <ContentLoader
+          width={width}
+          height={height}
+          primaryColor={primaryColor}
+          secondaryColor={secondaryColor}
+          {...props}
+        >
+          { list }
+        </ContentLoader>
+      );
+    }
   }
 }
 

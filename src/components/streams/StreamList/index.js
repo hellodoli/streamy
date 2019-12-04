@@ -11,9 +11,20 @@ class StreamList extends Component {
     this.props.fetchStreams();
   }
 
-  render () {
+  renderStreamList = () => {
     const { streamList, currentUserId } = this.props;
-    return(
+    if (streamList.length > 0) {
+      return (
+        <div className="s-stream-list">
+          { streamList.map(item => <StreamItem key={item.id} item={item} currentUserId={currentUserId} />) }
+        </div>
+      );
+    }
+    return (<ContentLoading type={3} mode="dark" row={4} col={1} />);
+  }
+
+  render () {
+    return (
       <div>
         <Jumbotron className="bg-white">
           <div>
@@ -21,14 +32,10 @@ class StreamList extends Component {
             <p className="lead">
               This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.
             </p>
-            <ContentLoading type={3} mode="dark"></ContentLoading>
           </div>
           <hr className="my-3"></hr>
-          <div className="s-stream-list">
-            { (streamList && streamList.length > 0) &&
-                streamList.map(item => <StreamItem key={item.id} item={item} currentUserId={currentUserId} />)
-            }
-          </div>
+          {/* render StreamList */}
+          { this.renderStreamList() }
         </Jumbotron>
       </div>
     );

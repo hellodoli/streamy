@@ -45,9 +45,9 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/" component={StreamList} />
                       <Route path="/streams/new" component={StreamCreate} />
-                      <Route path="/streams/:id" component={StreamShow} />
                       <Route path="/streams/edit/:id" component={StreamDetail} />
                       <Route path="/streams/delete/:id" component={StreamDelete} />
+                      <Route path="/streams/:id" component={StreamShow} />
                     </Switch>
                   </div>
                 </Col>
